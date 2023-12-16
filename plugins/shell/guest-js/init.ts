@@ -9,14 +9,15 @@ function openLinks() {
   document.querySelector("body")?.addEventListener("click", function (e) {
     let target = e.target as HTMLElement;
     while (target != null) {
-      if (target.matches("a") && target.dataset.openOnDesktop) {
+      if (target.matches("a")) {
         const t = target as HTMLAnchorElement;
         if (
           t.href &&
           ["http://", "https://", "mailto:", "tel:"].some((v) =>
             t.href.startsWith(v),
           ) &&
-          t.target === "_blank"
+          t.target === "_blank" &&
+          target.dataset.openOnDesktop
         ) {
           invoke("plugin:shell|open", {
             path: t.href,
