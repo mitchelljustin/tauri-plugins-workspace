@@ -4,7 +4,7 @@
 
 import { invoke } from "@tauri-apps/api/primitives";
 
-// open <a href="..."> links with the API
+// open <a href="..." data-open-on-desktop> links with the API
 function openLinks() {
   document.querySelector("body")?.addEventListener("click", function (e) {
     let target = e.target as HTMLElement;
