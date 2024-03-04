@@ -4,7 +4,7 @@
 
 import { invoke } from "@tauri-apps/api/core";
 
-// open <a href="..."> links with the API
+// open <a href="..." data-open-on-desktop> links with the API
 function openLinks() {
   document.querySelector("body")?.addEventListener("click", function (e) {
     let target = e.target as HTMLElement;
@@ -16,7 +16,8 @@ function openLinks() {
           ["http://", "https://", "mailto:", "tel:"].some((v) =>
             t.href.startsWith(v),
           ) &&
-          t.target === "_blank"
+          t.target === "_blank" &&
+          target.dataset.openOnDesktop
         ) {
           invoke("plugin:shell|open", {
             path: t.href,
