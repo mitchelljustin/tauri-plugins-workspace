@@ -16,7 +16,8 @@ function openLinks(): void {
           ["http://", "https://", "mailto:", "tel:"].some((v) =>
             t.href.startsWith(v),
           ) &&
-          t.target === "_blank"
+          t.target === "_blank" &&
+          t.dataset.openOnDesktop
         ) {
           void invoke("plugin:shell|open", {
             path: t.href,
